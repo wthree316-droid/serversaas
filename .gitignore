@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+
+.env
+.env1
+.env2
+.env3
+seed_lotto.py
+seed_shop_demo.py
+seed_superadmin.py

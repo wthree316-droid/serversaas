@@ -1,0 +1,27 @@
+# --- Core Framework ---
+fastapi
+uvicorn[standard]
+gunicorn
+python-multipart
+requests
+
+# --- Database ---
+sqlalchemy
+psycopg2-binary
+alembic 
+
+# --- Configuration & Validation ---
+pydantic
+pydantic-settings
+python-dotenv
+
+# --- Security & Auth ---
+passlib[bcrypt]  
+python-jose[cryptography] 
+PyJWT
+bcrypt==4.0.1 
+# --- External Services ---
+supabase
+line-bot-sdk 
+pytz
+slowapi
