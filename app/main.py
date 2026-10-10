@@ -16,14 +16,22 @@ app.state.limiter = limiter
 # 🌟 3. บอกแอพว่า ถ้าใครยิงเกินโควตา ให้ตอบกลับด้วย Error ของ slowapi
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
+origins = [
+    "https://service-zeta-nine.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+]
+
 app.add_middleware(
     CORSMiddleware,
-     allow_origin_regex=r"https?://(.*\.service-zeta-nine.vercel.app\.com|service-zeta-nine.vercel.app\.com|localhost:\d+|127\.0\.0\.1:\d+)",
-    
-    allow_credentials=True, 
+    allow_origins=origins,
+    # รองรับทั้ง preview branches ของ vercel และ localhost พอร์ตอื่นๆ ทั้งหมด
+    allow_origin_regex=r"^https?:\/\/(localhost(:\d+)?|127\.0\.0\.1(:\d+)?|([a-zA-Z0-9-]+\.)*vercel\.app)$",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["*"]
+    expose_headers=["*"],
 )
 
 app.include_router(api_router, prefix="/api/v1")
